@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+    <title>Employee Details</title>
+
+    <!-- css -->
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 12pt;
+            border: 1pt solid #D8D9DA;
+        }
+        th,td{
+            border: 1pt solid #D8D9DA;
+            padding: 8px;
+        }
+        th{
+            background-color: #D6EFED;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <h2>Employee Details</h2>
+
+    <table id="employeeTable">
+        <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th> Date of Joining</th>
+            <th>Address</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+    <tbody>
+
+    </tbody>
+    </table>
+
+    <script>
+        const employees = [
+            {name: 'shrikant jamale',  Designation: 'Technical Writer', Joining_Date: '01-06-2023', Address: 'Dharur, Maharashtra', Salary:'600000'},
+            {name: 'prathviraj More',  Designation: 'Content Writer', Joining_Date: '01-07-2023', Address: 'Kaij, Maharashtra', Salary:'650000'},
+            {name: 'Mahesh pethe',  Designation: 'Technical Writer', Joining_Date: '01-08-2023', Address: 'Telgaon, Maharashtra', Salary:'670000'},
+            {name: 'Nilesh Shinde',  Designation: 'Technical Writer', Joining_Date: '01-09-2023', Address: 'pimpri, Maharashtra', Salary:'700000'}  
+        ];
+
+        const tableBody = document.querySelector('#employeeTable tbody');
+
+        function populateTable(){
+            tableBody.innerHTML = '';
+            
+            employees.forEach(employees => {
+                if (employees.Designation === 'Technical Writer'){
+                    const row = document.createElement('tr')
+                    row.innerHTML=`
+                    <td>${employees.name}</td>
+                    <td>${employees.Designation}</td>
+                    <td>${employees.Joining_Date}</td>
+                    <td>${employees.Address}</td>
+                    <td>${employees.Salary}</td>
+                    `;
+                    tableBody.appendChild(row)
+                }
+            });
+        }
+        // filter the Technical Writers
+        function displayTechnicalWriters(){
+            const TechnicalWriter= employees.filter(employees.Designation === 'Technical Writer');
+            populateTableWithFilteredData(TechnicalWriter);
+        }
+        // filter the Salary between 5 and 7 LPA
+        function displaySalaryBetween5and7Lpa(){
+            const filteredEmployees= employees.filter(employees => employees.Salary>500000 && employees.Salary<700000);
+            populateTableWithFilteredData(filteredEmployees)
+        }
+        populateTable();
+        
+    </script>
+</body>
